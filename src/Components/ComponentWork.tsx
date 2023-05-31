@@ -8,28 +8,23 @@ type ComponentWorkType = {
 }
 
 export const ComponentWork = (props: ComponentWorkType) => {
-
-
     return (
         <div>
-
-            {
-                props.topcars.map((el, index) => {
-                    debugger
+            <table>
+                <tr>
+                    <th>Manufacturer</th>
+                    <th>Model</th>
+                </tr>
+                {props.topcars.map((el, index) => {
                     return (
-                        <table key={index}>
-                            <tr>
-                                <th>Manufacturer</th>
-                                <th>Model</th>
-                            </tr>
-                            <tr>
-                                <td>{el.manufacturer}</td>
-                                <td>{el.model}</td>
-                            </tr>
-                        </table>
+                        <tr key={index}>
+                            <td>{el.manufacturer}</td>
+                            <td>{el.model}</td>
+                        </tr>
                     )
                 })
-            }
+                }
+            </table>
         </div>
     );
 }
