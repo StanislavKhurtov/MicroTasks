@@ -1,6 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
-import {Button} from "./Components/Button/Button";
 
 
 function App() {
@@ -35,10 +34,10 @@ function App() {
     /*    console.log("Hello Ivan");*/
     /*}*/
 
-    const Button1Foo = (name:string,age:number) => {
+    const Button1Foo = (name: string, age: number) => {
         console.log(`I'm ${name}. My age : ${age}`);
     }
-    const Button2Foo = (name:string) => {
+    const Button2Foo = (name: string) => {
         console.log(`I'm ${name}`);
 
     }
@@ -46,6 +45,14 @@ function App() {
         console.log("I'm stupping button");
     }
 
+    let [a, setA] = useState(1)
+    const onClickHand = () => {
+        setA(++a);
+        console.log(a);
+    }
+    const onClickHandReset = () => {
+        setA(0)
+    }
 
     return (
         <div className="App">
@@ -55,9 +62,14 @@ function App() {
             <NewComponent students={students}/>
             <ComponentWork topcars={topCars}/>*/}
 
-            <Button name={'MyYouTubeChannel-1'} callBack={()=>Button1Foo('Stas', 38)}/>
-            <Button name={'MyYouTubeChannel-2'} callBack={()=>Button2Foo('Ivan')}/>
-            <Button name={'Stypid button'} callBack={Button3Foo}/>
+            {/* <Button name={'MyYouTubeChannel-1'} callBack={() => Button1Foo('Stas', 38)}/>
+            <Button name={'MyYouTubeChannel-2'} callBack={() => Button2Foo('Ivan')}/>
+            <Button name={'Stypid button'} callBack={Button3Foo}/>*/}
+
+
+            <h1>{a}</h1>
+            <button onClick={onClickHand}>Number</button>
+            <button onClick={onClickHandReset}>Reset</button>
 
 
         </div>
