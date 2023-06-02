@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
+import {Button} from "./Button";
 
 type FilterName = "all" | "ruble" | "dollar";
 
@@ -31,7 +32,9 @@ function App() {
     const onClickFilterHandler = (nameButton: FilterName) => {
         setFilter(nameButton)
     };
-
+    const toFoo1 = () => {
+        console.log('12324')
+    }
 
     return (
         <div className="App">
@@ -45,11 +48,14 @@ function App() {
                     );
                 })}
             </ul>
+
+
             <div className="buttons">
-                <button onClick={() => onClickFilterHandler('all')}>all</button>
-                <button onClick={() => onClickFilterHandler('ruble')}>ruble</button>
-                <button onClick={() => onClickFilterHandler('dollar')}>dollar</button>
+                <Button name={"all"} callback={() => onClickFilterHandler('all')}/>
+                <Button name={"ruble"} callback={() => onClickFilterHandler('ruble')}/>
+                <Button name={"dollar"} callback={() => onClickFilterHandler('dollar')}/>
             </div>
+
         </div>
     );
 }
