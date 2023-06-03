@@ -1,8 +1,15 @@
 import React, {useState} from 'react';
 import './App.css';
-import {Button} from "./Button";
+import {NeComp} from "./Components/NeComp";
 
-type FilterName = "all" | "ruble" | "dollar";
+
+export type FilterType = "all" | "dollar" | "ruble";
+
+export type MoneyType = {
+    banknote: string,
+    nominal: number,
+    number: string,
+}
 
 function App() {
     const [money, setMoney] = useState([
@@ -18,46 +25,44 @@ function App() {
         {banknote: "ruble", nominal: 50, number: "h123456789"},
     ])
 
-    const [filter, setFilter] = useState<FilterName>('all');
+    const [filter, setFilter] = useState<FilterType>('all')
 
     let currentMoney = money;
 
-    if (filter === 'ruble') {
-        currentMoney = money.filter((filteredMoney: { banknote: string, nominal: number, number: string }) => filteredMoney.banknote === "ruble")
+    if (filter === "dollar") {
+        currentMoney = money.filter((filteredMoney) => filteredMoney.banknote === "dollar")
     }
-    if (filter === 'dollar') {
-        currentMoney = money.filter((filteredMoney: { banknote: string, nominal: number, number: string }) => filteredMoney.banknote === "dollar")
+    if (filter === "ruble") {
+        currentMoney = money.filter((filteredMoney) => filteredMoney.banknote === "ruble")
     }
 
-    const onClickFilterHandler = (nameButton: FilterName) => {
-        setFilter(nameButton)
-    };
-    const toFoo1 = () => {
-        console.log('12324')
+    const onClickFilter = (nameBtn: FilterType) => {
+        setFilter(nameBtn);
     }
+
 
     return (
         <div className="App">
-            <ul>
-                {currentMoney.map((el, index) => {
-                    return (
-                        <li key={index}><span>{el.banknote}</span>
-                            <span> {el.nominal}</span>
-                            <span> {el.number}</span>
-                        </li>
-                    );
-                })}
-            </ul>
-
-
-            <div className="buttons">
-                <Button name={"all"} callback={() => onClickFilterHandler('all')}/>
-                <Button name={"ruble"} callback={() => onClickFilterHandler('ruble')}/>
-                <Button name={"dollar"} callback={() => onClickFilterHandler('dollar')}/>
-            </div>
-
+            <NeComp currentMoney={currentMoney} onClickFilter={onClickFilter}/>
         </div>
     );
 }
 
 export default App;
+
+
+/* let [message, setMessage] = useState([
+      {message: 'message1'},
+      {message: 'message2'},
+      {message: 'message3'},
+  ])*/
+
+
+/*  <FullInput/>
+            {message.map((el,index) => {
+                return(
+                    <div key={index}>{el.message}</div>
+                );
+            })}*/
+export class currentMoney {
+}
